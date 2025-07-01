@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCOS - منصتك التعليمية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Vazirmatn:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', Arial, sans-serif;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            direction: rtl;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            height: 100px;
+            background: white;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.10);
+            border-bottom: 1px solid #E5E5E5;
+            padding: 0 31px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo img {
+            max-height: 50px;
+            max-width: 200px;
+            height: auto;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 100px);
+            padding: 40px 20px;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .welcome-title {
+            color: #3FA1B4;
+            font-size: 32px;
+            font-family: 'Almarai', sans-serif;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .welcome-subtitle {
+            color: #929292;
+            font-size: 24px;
+            font-family: 'Vazirmatn', sans-serif;
+            font-weight: 500;
+            line-height: 1.4;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-fields {
+            width: 100%;
+            max-width: 536px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-field {
+            width: 100%;
+            height: 64px;
+            background: white;
+            border: 1px solid #CACACA;
+            border-radius: 3px;
+            padding: 0 20px;
+            font-size: 18px;
+            font-family: 'Vazirmatn', sans-serif;
+            color: #333;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #3FA1B4;
+            box-shadow: 0 0 0 3px rgba(63, 161, 180, 0.1);
+        }
+
+        .input-field::placeholder {
+            color: #A6A6A6;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .privacy-section {
+            width: 100%;
+            max-width: 583px;
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            margin-top: 10px;
+        }
+
+        .checkbox-wrapper {
+            position: relative;
+            margin-top: 3px;
+        }
+
+        .checkbox {
+            width: 23px;
+            height: 23px;
+            background: white;
+            border: 1px solid #CACACA;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox:checked {
+            background: #91BE3E;
+            border-color: #91BE3E;
+        }
+
+        .checkbox:checked::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .privacy-text {
+            color: #929292;
+            font-size: 13px;
+            font-family: 'Vazirmatn', sans-serif;
+            font-weight: 400;
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .submit-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .submit-btn {
+            width: 198px;
+            height: 64px;
+            background: #91BE3E;
+            border: 1px solid #91BE3E;
+            border-radius: 3px;
+            color: white;
+            font-size: 24px;
+            font-family: 'Almarai', sans-serif;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #7da835;
+            border-color: #7da835;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(145, 190, 62, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            border-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Footer line */
+        .footer-line {
+            position: absolute;
+            bottom: 100px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #C2C2C2;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+            }
+
+            .header {
+                padding: 0 20px;
+                height: 80px;
+            }
+
+            .main-content {
+                padding: 20px 15px;
+                min-height: calc(100vh - 80px);
+            }
+
+            .welcome-title {
+                font-size: 28px;
+            }
+
+            .welcome-subtitle {
+                font-size: 20px;
+            }
+
+            .form-fields {
+                max-width: 100%;
+            }
+
+            .input-field {
+                height: 56px;
+                font-size: 16px;
+            }
+
+            .input-field::placeholder {
+                font-size: 16px;
+            }
+
+            .submit-btn {
+                width: 100%;
+                max-width: 300px;
+                font-size: 20px;
+            }
+
+            .privacy-section {
+                max-width: 100%;
+            }
+
+            .privacy-text {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-title {
+                font-size: 24px;
+            }
+
+            .welcome-subtitle {
+                font-size: 18px;
+            }
+
+            .input-field {
+                height: 50px;
+                font-size: 14px;
+            }
+
+            .input-field::placeholder {
+                font-size: 14px;
+            }
+
+            .submit-btn {
+                font-size: 18px;
+                height: 56px;
+            }
+        }
+
+        /* Animation for form appearance */
+        .form-container {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .input-group {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.4s ease forwards;
+        }
+
+        .input-group:nth-child(1) { animation-delay: 0.1s; }
+        .input-group:nth-child(2) { animation-delay: 0.2s; }
+        .input-group:nth-child(3) { animation-delay: 0.3s; }
+        .input-group:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <img src="C:\Users\22681\Downloads\free course form\pictures\Layer_1.svg" alt="BCOS Logo" />
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="form-container">
+                <div class="form-header">
+                    <h1 class="welcome-title">مرحبا بك في منصتك التعليمية</h1>
+                    <p class="welcome-subtitle">سعداء جدا بالتعرف عليك، هل يمكنك أن تخبرنا المزيد عنك ؟</p>
+                </div>
+
+                <form class="form-fields" id="registrationForm">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            class="input-field" 
+                            placeholder="يرجى إدخال اسمك هنا"
+                            name="fullName"
+                            required
+                        >
+                    </div>
+
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            class="input-field" 
+                            placeholder="يرجى إدخال اسم الشركة التي تعمل فيها"
+                            name="companyName"
+                            required
+                        >
+                    </div>
+
+                    <div class="input-group">
+                        <input 
+                            type="email" 
+                            class="input-field" 
+                            placeholder="يرجى إدخال بريدك الإلكتروني"
+                            name="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="input-group">
+                        <input 
+                            type="tel" 
+                            class="input-field" 
+                            placeholder="يرجى إدخال رقم الهاتف على الواتساب"
+                            name="whatsappNumber"
+                            required
+                        >
+                    </div>
+                </form>
+
+                <div class="privacy-section">
+                    <input type="checkbox" class="checkbox" id="privacyConsent" required>
+                    <label for="privacyConsent" class="privacy-text">
+                        طبقا للقانون 18-07 المتعلق بحماية البيانات الشخصية في الجزائر، من خلال تحديد المربع أدناه، أوافق على تلقي رسائل البريد الإلكتروني.
+                        قد تتضمن رسائل البريد الإلكتروني هذه معلومات حول الإعلانات والعروض الخاصة المتعلقة بخدمات BCOS<br>
+                        أفهم أنه بإمكاني إلغاء الاشتراك في أي وقت باستخدام روابط إلغاء الاشتراك الموجودة في رسائل البريد الإلكتروني أو عن طريق الإبلاغ عنها مباشرة إلى فريق BCOS
+                    </label>
+                </div>
+
+                <div class="submit-section">
+                    <button type="submit" class="submit-btn" id="submitBtn">تأكيد</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer line -->
+        <div class="footer-line"></div>
+    </div>
+
+    <script>
+        // Google Sheets Integration Configuration
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbya5zM3s1aXhwKg5a4HjZEES1FFMPW_ji8JRhle2fyIqs6VICUpRxGLCHsXjPk-dHmGsA/exec';
+        
+        // Articulate Storyline Integration
+        function goToNextSlide() {
+            // Check if running in Articulate Storyline
+            if (window.parent && window.parent.GetPlayer) {
+                const player = window.parent.GetPlayer();
+                player.SetVar("formCompleted", true);
+                // Navigate to next slide
+                player.SetVar("navigateNext", true);
+            }
+        }
+
+        // Google Sheets submission function
+        async function submitToGoogleSheets(formData) {
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                return true; // Success (no-cors mode doesn't allow reading response)
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                return false;
+            }
+        }
+
+        // Form validation and interaction
+        const form = document.getElementById('registrationForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const privacyConsent = document.getElementById('privacyConsent');
+        const inputs = form.querySelectorAll('input[required]');
+
+        function validateForm() {
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                }
+            });
+
+            if (!privacyConsent.checked) {
+                isValid = false;
+            }
+
+            submitBtn.disabled = !isValid;
+        }
+
+        // Add event listeners for real-time validation
+        inputs.forEach(input => {
+            input.addEventListener('input', validateForm);
+            input.addEventListener('blur', validateForm);
+        });
+
+        privacyConsent.addEventListener('change', validateForm);
+
+        // Initial validation
+        validateForm();
+
+        // Form submission handler
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!submitBtn.disabled) {
+                // Show loading state
+                submitBtn.textContent = 'جاري الإرسال...';
+                submitBtn.disabled = true;
+
+                // Collect form data
+                const formData = {
+                    fullName: form.fullName.value.trim(),
+                    companyName: form.companyName.value.trim(),
+                    email: form.email.value.trim(),
+                    whatsappNumber: form.whatsappNumber.value.trim(),
+                    privacyConsent: privacyConsent.checked,
+                    timestamp: new Date().toISOString(),
+                    submissionDate: new Date().toLocaleDateString('ar-DZ'),
+                    submissionTime: new Date().toLocaleTimeString('ar-DZ')
+                };
+
+                try {
+                    // Submit to Google Sheets
+                    const success = await submitToGoogleSheets(formData);
+                    
+                    if (success) {
+                        // Show success message
+                        submitBtn.textContent = 'تم الإرسال بنجاح!';
+                        submitBtn.style.background = '#28a745';
+                        
+                        // Store data in Storyline variables if available
+                        if (window.parent && window.parent.GetPlayer) {
+                            const player = window.parent.GetPlayer();
+                            player.SetVar("userName", formData.fullName);
+                            player.SetVar("userCompany", formData.companyName);
+                            player.SetVar("userEmail", formData.email);
+                            player.SetVar("userWhatsApp", formData.whatsappNumber);
+                        }
+                        
+                        // Wait 2 seconds then navigate to next slide
+                        setTimeout(() => {
+                            goToNextSlide();
+                        }, 2000);
+                        
+                    } else {
+                        throw new Error('فشل في إرسال البيانات');
+                    }
+                    
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    submitBtn.textContent = 'حدث خطأ، حاول مرة أخرى';
+                    submitBtn.style.background = '#dc3545';
+                    submitBtn.disabled = false;
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        submitBtn.textContent = 'تأكيد';
+                        submitBtn.style.background = '#91BE3E';
+                        validateForm();
+                    }, 3000);
+                }
+            }
+        });
+
+        // Add smooth scrolling for better UX
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                container.style.transition = 'all 0.6s ease';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Input focus animations
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.transform = 'scale(1.02)';
+            });
+
+            input.addEventListener('blur', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Debug function for testing
+        function testStorylineConnection() {
+            if (window.parent && window.parent.GetPlayer) {
+                console.log('Storyline connection: ✅ Connected');
+                return true;
+            } else {
+                console.log('Storyline connection: ❌ Not connected (normal when testing outside Storyline)');
+                return false;
+            }
+        }
+
+        // Call test function on load
+        window.addEventListener('load', testStorylineConnection);
+    </script>
+</body>
+</html>
